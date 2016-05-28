@@ -1,6 +1,7 @@
 #!/bin/bash
 compr="./bmp-compr-main"
 dcompr="./bmp-decompr-main"
+argc="3"
 ifile="bmp-compr-s.bmp"
 ofile="bmp-compr-o"
 mode=c
@@ -34,9 +35,9 @@ if [ $1 = "-i" ]; then
   if [ -f $ifile ]; then
     if ! [ -f $ofile ]; then
       if [ $mode = c ]; then
-        $compr 3 $ifile $ofile
+        $compr $argc $ifile $ofile
       else
-        $dcompr 3 $ifile $ofile
+        $dcompr $argc $ifile $ofile
       fi
     else
       echo "Output file $ofile already exists. Overecho? Y/N"
@@ -46,9 +47,9 @@ if [ $1 = "-i" ]; then
         fin=1
         echo "Rewriting output file."
         if [ $mode = c ]; then
-          $compr 3 $ifile $ofile
+          $compr $argc $ifile $ofile
         else
-          $dcompr 3 $ifile $ofile
+          $dcompr $argc $ifile $ofile
         fi
       else
         echo "Error: cannot overwrite existing file. Choose another filename. Exiting in 5 sec."
@@ -92,9 +93,9 @@ else
     done
   fi
   if [ $mode = c ]; then
-    $compr 3 $ifile $ofile
+    $compr $argc $ifile $ofile
   else
-    $dcompr 3 $ifile $ofile
+    $dcompr $argc $ifile $ofile
   fi
 
 fi

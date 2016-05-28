@@ -4,10 +4,16 @@ void deCompress (FILE *Input, FILE *Output, char *Headers, const int offBits, co
 
 const int MASK_FLAG = 0x8000;
 
-int main (const int argnum, const char* args[]) {
-    int err = 0;
-    FILE *Source = 0, *Output = 0;
-    openFiles (&Source, args[2], &Output, args[3]);
+int main (const int argc, const char* argv[]) {
+  /*
+  FILE *T = fopen ("/home/kda/Git/test", "w");
+  fprintf (T, "%s; %s; %s; %s", argv[0], argv[1], argv[2], argv[3]);
+  fclose (T);
+  */
+
+  int err = 0;
+  FILE *Source = 0, *Output = 0;
+  openFiles (&Source, argv[2], &Output, argv[3]);
 
 	int offBits = 0, width = 0, height = 0, fsize = 0;
 	char *Headers = 0;

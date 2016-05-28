@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <errno.h>
 
 const int FILENAMELEN = 60;
 const char *compr = "bmp-compr-main", *decompr = "bmp-decompr-main";
@@ -14,27 +13,26 @@ int main () {
   printf ("Enter output filename... ");
   scanf("%s", output);
   printf ("Warning: files dont't possibly exist\n");
-  printf ("%s; %s\n", source, output);
-  char mode;
+  const char *argv[4] = {"bmp-compr-*", "3", source, output};
+  char mode = 0;
   int modeok = 0;
-  while (! modeok) {
-    printf ("Enter mode: [c]ompression/[d]ecompression... ");
+  do {
+    printf ("Enter mode: [c]ompression/[d]ecompression...\n");
     scanf ("%c", &mode);
-    const char *argv[4] = {"bmp-compr-*", "3", source, output};
-    if (mode == 'c') {
-      modeok = 1;
-      printf ("Compression\n");
-      execv (compr, argv);
-    }
-    else {
-      if (mode == 'd') {
+    switch (mode) {
+      case 'c': case 'C':
+        modeok = 1;
+        printf ("Compression\n");
+        execv (compr, argv);
+        break;
+      case 'd': case 'D':
         modeok = 1;
         printf ("Decompression\n");
         execv (decompr, argv);
-      }
-      else {
-        printf ("Error: incorrect mode");
-      }
+        break;
+      default:
+        printf ("Error: invalid mode. ");
     }
-  }
+
+  } while (! modeok);
 }

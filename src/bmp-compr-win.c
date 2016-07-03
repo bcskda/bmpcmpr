@@ -35,4 +35,5 @@ int main () {
     }
 
   } while (! modeok);
+  printf ("Something went wrong with the CP.\n")
 }

@@ -1,22 +1,31 @@
 # bmpcmpr
 A simple C-written .bmp compression and decompression utility.
 
-For now works only with 16bit .bmp.
+For now works only with 16bit image/bmp.
 # Dependencies:
-gcc compiler
+gcc
+### Windows special:
+MinGW *(only for building)*
 # Installation
+### Linux:
 ```sh
 git clone bcskda/bmpcmpr
 cd bmpcmpr
-make default
+make linux
+```
+### Windows:
+```sh
+git clone bcskda/bmpcmpr
+cd bmpcmpr
+make windows
 ```
 # Usage:
 ```sh
 $ bmp-compr [-h] [ -i | -m mode -s source [-o output] ]
 ```
--h: Display help
+-h: Display help and exit
 
--i: Use post-launch interface
+-i: Enter arguments in running front-end
 
 -m mode: Set mode: [c]ompress/[d]ecompress
 
